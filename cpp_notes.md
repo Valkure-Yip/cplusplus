@@ -223,3 +223,186 @@ int main() {
 // Outputs "I just got executed!"
 ```
 
+default param
+
+```cpp
+void myFunction(string country = "Norway") {
+  cout << country << "\n";
+}
+```
+
+
+
+## Class
+
+```cpp
+class MyClass {        // The class
+  public:              // Access specifier
+    void myMethod() {  // Method/function defined inside the class
+      cout << "Hello World!";
+    }
+};
+
+int main() {
+  MyClass myObj;     // Create an object of MyClass
+  myObj.myMethod();  // Call the method
+  return 0;
+}
+```
+
+
+
+define methods outside class def: `void MyClass::myMethod() `
+
+```cpp
+class MyClass {        // The class
+  public:              // Access specifier
+    void myMethod();   // Method/function declaration
+};
+
+// Method/function definition outside the class
+void MyClass::myMethod() {
+  cout << "Hello World!";
+}
+
+int main() {
+  MyClass myObj;     // Create an object of MyClass
+  myObj.myMethod();  // Call the method
+  return 0;
+}
+```
+
+### constructor
+
+To create a constructor, use the same name as the class, followed by parentheses `()`:
+
+```cpp
+class Car {        // The class
+  public:          // Access specifier
+    string brand;  // Attribute
+    string model;  // Attribute
+    int year;      // Attribute
+    Car(string x, string y, int z) { // Constructor with parameters
+      brand = x;
+      model = y;
+      year = z;
+    }
+};
+
+int main() {
+  // Create Car objects and call the constructor with different values
+  Car carObj1("BMW", "X5", 1999);
+  Car carObj2("Ford", "Mustang", 1969);
+
+  // Print values
+  cout << carObj1.brand << " " << carObj1.model << " " << carObj1.year << "\n";
+  cout << carObj2.brand << " " << carObj2.model << " " << carObj2.year << "\n";
+  return 0;
+}
+```
+
+### access specifier: `public`, `private`, `protected`
+
+- `public` - members are accessible from outside the class
+- `private` - members cannot be accessed (or viewed) from outside the class
+- `protected` - members cannot be accessed from outside the class, however, they can be accessed in inherited classes. 
+
+**Note:** By default, all members of a class are `private` if you don't specify an access specifier:
+
+```cpp
+class MyClass {
+  int x;   // Private attribute
+  int y;   // Private attribute
+};
+```
+
+
+
+### Inheritance
+
+```cpp
+// Base class
+class Vehicle {
+  public:
+    string brand = "Ford";
+    void honk() {
+      cout << "Tuut, tuut! \n" ;
+    }
+};
+
+// Derived class
+class Car: public Vehicle {
+  public:
+    string model = "Mustang";
+};
+```
+
+Inherit multiple classes: `class MyChildClass: public MyClass, public MyOtherClass`
+
+```cpp
+// Base class
+class MyClass {
+  public:
+    void myFunction() {
+      cout << "Some content in parent class." ;
+    }
+};
+
+// Another base class
+class MyOtherClass {
+  public:
+    void myOtherFunction() {
+      cout << "Some content in another class." ;
+    }
+};
+
+// Derived class
+class MyChildClass: public MyClass, public MyOtherClass {
+};
+
+int main() {
+  MyChildClass myObj;
+  myObj.myFunction();
+  myObj.myOtherFunction();
+  return 0;
+}
+```
+
+#### `protected`
+
+`protected`, is similar to `private`, but it can also be accessed in the **inherited** class:
+
+
+
+### Polymorphism
+
+perform a single action in different ways.
+
+For example, think of a base class called `Animal` that has a method called `animalSound()`. Derived classes of Animals could be Pigs, Cats, Dogs, Birds - And they also have their own implementation of an animal sound (the pig oinks, and the cat meows, etc.):
+
+```cpp
+// Base class
+class Animal {
+  public:
+    void animalSound() {
+    cout << "The animal makes a sound \n" ;
+  }
+};
+
+// Derived class
+class Pig : public Animal {
+  public:
+    void animalSound() {
+    cout << "The pig says: wee wee \n" ;
+  }
+};
+
+// Derived class
+class Dog : public Animal {
+  public:
+    void animalSound() {
+    cout << "The dog says: bow wow \n" ;
+  }
+};
+```
+
